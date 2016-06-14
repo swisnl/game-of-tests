@@ -35,7 +35,7 @@ class BaseParserTestCase  extends PHPUnit_Framework_TestCase {
         static::assertEquals(
             $expectedCount,
             $count,
-            'Check if file list has 2 results (one ignored method).'
+            'Check if file list has ' . $expectedCount . ' results.'
         );
     }
 }

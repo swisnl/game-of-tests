@@ -8,11 +8,13 @@
 
 namespace Parsers;
 
+use Swis\GoT\Parsers\Codeception\Cept;
+use Swis\GoT\Parsers\Codeception\Cest;
 use Swis\GoT\Parsers\PhpUnit;
 use Swis\GoT\Result;
 use Swis\GoT\Tests\Parsers\BaseParserTestCase;
 
-class PhpUnitTest extends BaseParserTestCase
+class CodeceptionCeptTest extends BaseParserTestCase
 {
 
     protected static $expectedCount = 2;
@@ -20,10 +22,11 @@ class PhpUnitTest extends BaseParserTestCase
     public function testFindTestFiles()
     {
         $expectedFiles = [
-            'tests/_files/phpunit/PhpUnitResultTest.php'
+            'tests/_files/codeception/CodeceptionCept.php',
+            'tests/_files/codeception/CodeceptionSecondFileCept.php',
         ];
         $expectedCount = 2;
-        $parser = new PhpUnit();
+        $parser = new Cept();
 
         $this->runParserTest($parser, $expectedFiles, $expectedCount);
     }

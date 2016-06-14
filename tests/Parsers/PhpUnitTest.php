@@ -9,32 +9,23 @@
 namespace Parsers;
 
 use Swis\GoT\Parsers\PhpUnit;
+use Swis\GoT\Result;
+use Swis\GoT\Tests\Parsers\BaseParserTestCase;
 
-class PhpUnitTest extends \PHPUnit_Framework_TestCase
+class PhpUnitTest extends BaseParserTestCase
 {
-    /**
-     * @var \Gitonomy\Git\Repository
-     */
-    protected $repository;
 
-    protected function setUp()
-    {
-        $this->repository = new \Gitonomy\Git\Repository('.');
-    }
-
+    protected static $expectedCount = 2;
 
     public function testFindTestFiles()
     {
+        $expectedFiles = [
+            'tests/_files/PhpUnitResultTest.php'
+        ];
+        $expectedCount = 2;
+        $parser = new PhpUnit();
 
-        $phpUnit = new PhpUnit();
-        $results = $phpUnit->run($this->repository);
-        $count = 0;
-        foreach($results as $result){
-            if($result->getFilename() == 'tests/Parsers/PhpUnitTest.php'){
-                $count++;
-            }
-        }
-        
-        $this->assertGreaterThan(1, $count, 'Check if PhpUnitTest.php is in the results.');
+        $this->runParserTest($parser, $expectedFiles, $expectedCount);
     }
+
 }

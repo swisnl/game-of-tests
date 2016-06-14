@@ -11,13 +11,13 @@ namespace Swis\GoT\Parsers;
 use Gitonomy\Git\Blame\Line;
 use Gitonomy\Git\Commit;
 use Gitonomy\Git\Repository;
-use Swis\GoT\Helpers\FindInRepository;
+use Swis\GoT\Helpers\Finder;
 use Swis\GoT\Parsers\Codeception\Cept;
 use Swis\GoT\Parsers\Codeception\Cest;
 use Swis\GoT\Result;
 use Symfony\Component\Process\Process;
 
-class PhpUnit implements ParserInterface
+class PhpUnit extends BaseParser implements ParserInterface
 {
 
     /**
@@ -66,8 +66,7 @@ class PhpUnit implements ParserInterface
 
     protected function findFiles($repository)
     {
-        $grepArgument = 'Test.php$';
-        return FindInRepository::grep($repository, $grepArgument);
+        return $this->finder->grep($repository, 'Test.php$');
     }
 
 }

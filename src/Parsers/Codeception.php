@@ -35,5 +35,4 @@ class Codeception implements ParserInterface
         }
         return $results;
     }
-
 }

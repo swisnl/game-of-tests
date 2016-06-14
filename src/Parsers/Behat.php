@@ -10,7 +10,7 @@ namespace Swis\GoT\Parsers;
 
 use Gitonomy\Git\Blame\Line;
 use Gitonomy\Git\Repository;
-use Swis\GoT\Helpers\FindInRepository;
+use Swis\GoT\Helpers\Finder;
 use Swis\GoT\Result;
 use Symfony\Component\Process\Process;
 
@@ -67,7 +67,8 @@ class Behat implements ParserInterface
     protected function findFiles($repository)
     {
         $grepArgument = '.feature$';
-        return FindInRepository::grep($repository, $grepArgument);
+        $finder = new Finder();
+        return $finder->grep($repository, $grepArgument);
     }
 
 }

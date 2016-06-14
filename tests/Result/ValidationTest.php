@@ -1,4 +1,8 @@
 <?php
+namespace Swis\GoT\Tests\Result;
+
+use PHPUnit_Framework_TestCase;
+
 /**
  * Created by PhpStorm.
  * User: bjorn

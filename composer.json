@@ -19,5 +19,11 @@
         "psr-4" : {
             "Swis\\GoT\\" : "src/"
         }
+    },
+
+    "autoload-dev": {
+        "psr-4" : {
+            "Swis\\GoT\\Tests\\" : "tests/"
+        }
     }
 }

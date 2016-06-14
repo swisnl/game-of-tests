@@ -3,14 +3,15 @@ namespace Swis\GoT\Helpers;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
 
-class FindInRepository {
+class Finder
+{
 
     /**
      * @param $repository
      * @param $grepArgument
-     * @return string
+     * @return array
      */
-    public static function grep($repository, $grepArgument)
+    public function grep($repository, $grepArgument)
     {
         $process = new Process('git ls-tree -r --name-only HEAD | grep ' . ProcessUtils::escapeArgument($grepArgument));
         $process->setWorkingDirectory($repository->getPath());

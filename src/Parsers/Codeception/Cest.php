@@ -4,7 +4,7 @@ namespace Swis\GoT\Parsers\Codeception;
 
 use Gitonomy\Git\Blame\Line;
 use Gitonomy\Git\Repository;
-use Swis\GoT\Helpers\FindInRepository;
+use Swis\GoT\Helpers\Finder;
 use Swis\GoT\Parsers\ParserInterface;
 use Swis\GoT\Result;
 use Symfony\Component\Process\Process;
@@ -61,7 +61,8 @@ class Cest implements ParserInterface
     protected function findFiles($repository)
     {
         $grepArgument = 'Cest.php$';
-        return FindInRepository::grep($repository, $grepArgument);
+        $finder = new Finder();
+        return $finder->grep($repository, $grepArgument);
     }
 
 }

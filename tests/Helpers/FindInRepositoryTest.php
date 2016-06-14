@@ -1,10 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bjorn
- * Date: 14-6-2016
- * Time: 14:24
- */
+namespace Swis\GoT\Tests\Helpers;
+
+use PHPUnit_Framework_TestCase;
+
 class FindInRepositoryTest extends PHPUnit_Framework_TestCase
 {
 
@@ -13,35 +11,41 @@ class FindInRepositoryTest extends PHPUnit_Framework_TestCase
      */
     protected $repository;
 
+    /**
+     * @var \Swis\GoT\Helpers\Finder $finder
+     */
+    protected $finder;
+
     protected function setUp()
     {
         $this->repository = new \Gitonomy\Git\Repository('.');
+        $this->finder = new \Swis\GoT\Helpers\Finder();
     }
 
     public function testFindFileWithGrep()
     {
-        $result = \Swis\GoT\Helpers\FindInRepository::grep($this->repository, 'TestFileForGrep');
+        $result = $this->finder->grep($this->repository, 'TestFileForGrep');
         static::assertCount(1, $result);
     }
 
     public function testFindFileWithStarGrep()
     {
 
-        $result = \Swis\GoT\Helpers\FindInRepository::grep($this->repository, 'ForGrep$');
+        $result = $this->finder->grep($this->repository, 'ForGrep$');
         static::assertCount(1, $result);
     }
 
     public function testFindFileWithGrepNonExisting()
     {
 
-        $resultNonExisting = \Swis\GoT\Helpers\FindInRepository::grep($this->repository, 'NonExistingTestFile');
+        $resultNonExisting = $this->finder->grep($this->repository, 'NonExistingTestFile');
         static::assertCount(0, $resultNonExisting);
     }
 
     public function testFindFileWithGrepFileEndsWith()
     {
 
-        $resultFilePart = \Swis\GoT\Helpers\FindInRepository::grep($this->repository, 'TestFileFor$');
+        $resultFilePart = $this->finder->grep($this->repository, 'TestFileFor$');
         static::assertCount(0, $resultFilePart);
     }
 

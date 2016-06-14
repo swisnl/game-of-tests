@@ -38,9 +38,12 @@ class Inspect extends Command
         $header = array_keys((array)$inspectedRepository[key($inspectedRepository)]);
 
         reset($inspectedRepository['results']);
-        array_walk($inspectedRepository['results'], function(&$row){
-            $row = (array) $row;
-        });
+        array_walk(
+            $inspectedRepository['results'],
+            function (&$row) {
+                $row = (array)$row;
+            }
+        );
 
         $this->info($inspectedRepository['remote']);
         $this->table($header, $inspectedRepository['results']);

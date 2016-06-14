@@ -1,5 +1,6 @@
 <?php
 namespace Swis\GoT\Helpers;
+
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
 
@@ -17,7 +18,7 @@ class Finder
         $process->setWorkingDirectory($repository->getPath());
         $process->run();
         $output = trim($process->getOutput());
-        if($output === ''){
+        if ($output === '') {
             return [];
         }
         return explode("\n", $output);

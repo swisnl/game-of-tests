@@ -3,19 +3,13 @@ namespace Swis\GoT\Tests\Result;
 
 use PHPUnit_Framework_TestCase;
 
-/**
- * Created by PhpStorm.
- * User: bjorn
- * Date: 14-6-2016
- * Time: 13:59
- */
 class ValidationTest extends PHPUnit_Framework_TestCase
 {
 
     public function testDefaultsGiveFalse()
     {
         $paths = \Swis\GoT\Settings::getSkipPaths();
-        foreach($paths as $path){
+        foreach ($paths as $path) {
             static::assertFalse(\Swis\GoT\Result\Validation::isValidFile($path . 'test.php'));
         }
     }

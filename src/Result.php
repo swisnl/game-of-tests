@@ -4,11 +4,17 @@ namespace Swis\GoT;
 class Result
 {
     protected $filename;
+
     protected $line;
+
     protected $author;
+
     protected $email;
+
     protected $date;
+
     protected $commitHash;
+
     protected $parser;
 
     /**
@@ -82,7 +88,7 @@ class Result
 
     public function __toString()
     {
-        return json_encode((array) $this);
+        return json_encode((array)$this);
     }
 
     /**

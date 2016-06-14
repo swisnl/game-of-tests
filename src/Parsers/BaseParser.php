@@ -1,14 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bjorn
- * Date: 3-6-2016
- * Time: 13:01
- */
-
 namespace Swis\GoT\Parsers;
-
-
 
 use Swis\GoT\Helpers\Finder;
 

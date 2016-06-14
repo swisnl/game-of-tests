@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bjorn
- * Date: 14-6-2016
- * Time: 11:43
- */
 namespace Swis\GoT\Parsers;
 
 use Gitonomy\Git\Repository;

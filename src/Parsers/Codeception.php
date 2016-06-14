@@ -1,14 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bjorn
- * Date: 3-6-2016
- * Time: 13:01
- */
-
 namespace Swis\GoT\Parsers;
-
-
 
 use Gitonomy\Git\Repository;
 use Swis\GoT\Parsers\Codeception\Cept;
@@ -26,9 +17,10 @@ class Codeception implements ParserInterface
      * @param Repository $repository
      * @return Result[]
      */
-    public function run(Repository $repository){
+    public function run(Repository $repository)
+    {
         $results = [];
-        foreach(static::$types as $type){
+        foreach (static::$types as $type) {
             /** @var ParserInterface $parser */
             $parser = new $type();
             $results += $parser->run($repository);

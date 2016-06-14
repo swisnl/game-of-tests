@@ -9,13 +9,14 @@ use Symfony\Component\Process\Process;
 
 class Inspector
 {
-    
+
     /**
      * @param $gitPath
      * @return Repository
      * @throws \Gitonomy\Git\Exception\InvalidArgumentException
      */
-    public function getRepositoryByPath($gitPath){
+    public function getRepositoryByPath($gitPath)
+    {
         return new Repository($gitPath);
     }
 
@@ -25,7 +26,8 @@ class Inspector
      * @throws \Gitonomy\Git\Exception\RuntimeException
      * @throws \Gitonomy\Git\Exception\InvalidArgumentException
      */
-    public function getRepositoryByUrl($gitUrl){
+    public function getRepositoryByUrl($gitUrl)
+    {
         return $this->gitRepositoryByUrl($gitUrl);
     }
 
@@ -41,9 +43,8 @@ class Inspector
     {
         $parsers = Settings::getAvailableParsers();
 
-
         $parserResults = [];
-        foreach($parsers as $parserClass){
+        foreach ($parsers as $parserClass) {
             /**
              * @var $parser ParserInterface
              */
@@ -53,13 +54,13 @@ class Inspector
 
         try {
             $remote = $this->getRemoteUrl($repository);
-        } catch(CannotFindRemoteException $e){
+        } catch (CannotFindRemoteException $e) {
             $remote = 'Cannot get remote.origin.url from config';
         }
 
         return [
-            'remote'    => $remote,
-            'results'   => $parserResults,
+            'remote' => $remote,
+            'results' => $parserResults,
         ];
     }
 
@@ -68,17 +69,17 @@ class Inspector
      * @return string
      * @throws \Swis\GoT\Exception\CannotFindRemoteException
      */
-    protected function getRemoteUrl(Repository $repository){
+    protected function getRemoteUrl(Repository $repository)
+    {
         try {
             $process = new Process('git config --get remote.origin.url');
             $process->setWorkingDirectory($repository->getPath());
             $process->run();
             $output = trim($process->getOutput());
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             throw new Exception\CannotFindRemoteException();
         }
         return $output;
-
     }
 
     /**

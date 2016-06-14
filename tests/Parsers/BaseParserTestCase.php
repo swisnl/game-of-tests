@@ -1,10 +1,12 @@
 <?php
 namespace Swis\GoT\Tests\Parsers;
+
 use PHPUnit_Framework_TestCase;
 use Swis\GoT\Parsers\ParserInterface;
 use Swis\GoT\Result;
 
-class BaseParserTestCase  extends PHPUnit_Framework_TestCase {
+class BaseParserTestCase extends PHPUnit_Framework_TestCase
+{
     /**
      * @var \Gitonomy\Git\Repository
      */
@@ -14,7 +16,6 @@ class BaseParserTestCase  extends PHPUnit_Framework_TestCase {
     {
         $this->repository = new \Gitonomy\Git\Repository('.');
     }
-
 
     /**
      * @param ParserInterface $parser

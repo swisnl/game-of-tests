@@ -16,12 +16,6 @@ class FindInRepositoryTest extends PHPUnit_Framework_TestCase
      */
     protected $finder;
 
-    protected function setUp()
-    {
-        $this->repository = new \Gitonomy\Git\Repository('.');
-        $this->finder = new \Swis\GoT\Helpers\Finder();
-    }
-
     public function testFindFileWithGrep()
     {
         $result = $this->finder->grep($this->repository, 'TestFileForGrep');
@@ -47,6 +41,12 @@ class FindInRepositoryTest extends PHPUnit_Framework_TestCase
 
         $resultFilePart = $this->finder->grep($this->repository, 'TestFileFor$');
         static::assertCount(0, $resultFilePart);
+    }
+
+    protected function setUp()
+    {
+        $this->repository = new \Gitonomy\Git\Repository('.');
+        $this->finder = new \Swis\GoT\Helpers\Finder();
     }
 
 }

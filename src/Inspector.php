@@ -3,11 +3,8 @@ namespace Swis\GoT;
 
 use Gitonomy\Git\Admin;
 use Gitonomy\Git\Repository;
-use Illuminate\Support\Str;
 use Swis\GoT\Exception\CannotFindRemoteException;
-use Swis\GoT\Parsers\Behat;
-use Swis\GoT\Parsers\Codeception;
-use Swis\GoT\Parsers\PhpUnit;
+use Swis\GoT\Parsers\ParserInterface;
 use Symfony\Component\Process\Process;
 
 class Inspector
@@ -35,7 +32,7 @@ class Inspector
     /**
      * Inspector constructor.
      * @param $repository Repository
-     * @return Result[]
+     * @return [string, Result[]]
      *
      * @throws \Gitonomy\Git\Exception\InvalidArgumentException
      * @throws \Gitonomy\Git\Exception\RuntimeException
@@ -47,14 +44,17 @@ class Inspector
 
         $parserResults = [];
         foreach($parsers as $parserClass){
+            /**
+             * @var $parser ParserInterface
+             */
             $parser = new $parserClass();
-            $parserResults = array_merge($parserResults, $parserClass->run($repository));
+            $parserResults = array_merge($parserResults, $parser->run($repository));
         }
 
         try {
             $remote = $this->getRemoteUrl($repository);
         } catch(CannotFindRemoteException $e){
-            $remote = 'Cannot fetch remote url';
+            $remote = 'Cannot get remote.origin.url from config';
         }
 
         return [
@@ -106,8 +106,6 @@ class Inspector
      */
     protected function getPathToForRepositoryUrl($gitUrl)
     {
-        $repositoryDirectory = Str::slug($gitUrl, '_');
-        $this->repositoryStoragePath = Settings::getRepositoryStoragePath();
-        return $this->repositoryStoragePath . $repositoryDirectory;
+        return Settings::getRepositoryStoragePath() . md5($gitUrl);
     }
 }

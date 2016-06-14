@@ -34,11 +34,16 @@ class PhpUnitResultTest extends PHPUnit_Framework_TestCase
     {
     }
 
-    // public function testCommentShouldNotCount(){
-    // }
-
     /**
      * Todo:
      *      Test that is commented still counts if it is a block comment.
      */
+
+    // public function testCommentShouldNotCount(){
+    // }
+
+    /**
+    public function testCommentBlockShouldNotCount(){
+    }
+    **/
 }

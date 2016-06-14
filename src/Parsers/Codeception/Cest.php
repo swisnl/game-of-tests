@@ -21,9 +21,9 @@ class Cest implements ParserInterface
      * @return Result[]
      * @throws \Gitonomy\Git\Exception\RuntimeException
      */
-    public static function run(Repository $repository){
+    public function run(Repository $repository){
 
-        $files = static::findFiles($repository);
+        $files = $this->findFiles($repository);
         $result = [];
 
         foreach($files as $file){
@@ -37,7 +37,7 @@ class Cest implements ParserInterface
              */
             $lines = $blame->getLines();
             foreach($lines as $line){
-                if(static::isTestLine($line->getContent())){
+                if($this->isTestLine($line->getContent())){
                     $result[$file.':'.$line->getLine()] = new Result(
                         $file,
                         $line->getLine(),
@@ -54,11 +54,11 @@ class Cest implements ParserInterface
         return $result;
     }
 
-    protected static function isTestLine($line){
+    protected function isTestLine($line){
         return preg_match('/(public function [^_][a-zA-Z0-9]+)/', $line);
     }
 
-    protected static function findFiles($repository)
+    protected function findFiles($repository)
     {
         $grepArgument = 'Cest.php$';
         return FindInRepository::grep($repository, $grepArgument);

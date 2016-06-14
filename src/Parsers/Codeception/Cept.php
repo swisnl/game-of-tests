@@ -16,9 +16,9 @@ class Cept implements ParserInterface {
      * @return Result[]
      * @throws \Gitonomy\Git\Exception\RuntimeException
      */
-    public static function run(Repository $repository){
+    public function run(Repository $repository){
 
-        $files = static::findFiles($repository);
+        $files = $this->findFiles($repository);
         $result = [];
 
 
@@ -47,7 +47,7 @@ class Cept implements ParserInterface {
         return $result;
     }
 
-    protected static function findFiles($repository)
+    protected function findFiles($repository)
     {
         $grepArgument = 'Cept.php$';
         return FindInRepository::grep($repository, $grepArgument);

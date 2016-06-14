@@ -47,7 +47,8 @@ class Inspector
 
         $parserResults = [];
         foreach($parsers as $parserClass){
-            $parserResults = array_merge($parserResults, $parserClass::run($repository));
+            $parser = new $parserClass();
+            $parserResults = array_merge($parserResults, $parserClass->run($repository));
         }
 
         try {

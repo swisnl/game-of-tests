@@ -17,5 +17,5 @@ interface ParserInterface
      * @return Result[]
      * @throws \Gitonomy\Git\Exception\RuntimeException
      */
-    public static function run(Repository $repository);
+    public function run(Repository $repository);
 }

@@ -27,7 +27,7 @@ class Codeception implements ParserInterface
      * @param Repository $repository
      * @return Result[]
      */
-    public static function run(Repository $repository){
+    public function run(Repository $repository){
         $results = [];
         foreach(static::$types as $type){
             $parser = new $type();

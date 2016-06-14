@@ -3,6 +3,7 @@
          verbose="true">
     <testsuite name="SWIS Game of Tests">
         <directory suffix="Test.php">./tests</directory>
+        <exclude>./tests/_files</exclude>
     </testsuite>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">

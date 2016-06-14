@@ -16,7 +16,7 @@ class InspectorTest extends \PHPUnit_Framework_TestCase
 
         $results = $inspector->inspectRepository($repository);
 
-        static::assertCount(25, $results['results']);
+        static::assertCount(26, $results['results']);
         static::assertEquals('git@github.com:swisnl/game-of-tests', $results['remote']);
     }
 }

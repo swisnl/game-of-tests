@@ -8,7 +8,6 @@
 namespace Swis\GoT\Parsers;
 
 use Gitonomy\Git\Repository;
-use Swis\GoT\Helpers\FindInRepositoryInterface;
 use Swis\GoT\Result;
 
 interface ParserInterface

@@ -7,7 +7,6 @@ use Gitonomy\Git\Repository;
 use Swis\GoT\Helpers\Finder;
 use Swis\GoT\Parsers\ParserInterface;
 use Swis\GoT\Result;
-use Symfony\Component\Process\Process;
 
 class Cest implements ParserInterface
 {

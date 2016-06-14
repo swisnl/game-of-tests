@@ -42,7 +42,7 @@ class Inspect extends Command
             $row = (array) $row;
         });
 
-        $this->info($inspectedRepository["remote"]);
+        $this->info($inspectedRepository['remote']);
         $this->table($header, $inspectedRepository['results']);
     }
 }

@@ -12,7 +12,6 @@ use Gitonomy\Git\Blame\Line;
 use Gitonomy\Git\Repository;
 use Swis\GoT\Helpers\Finder;
 use Swis\GoT\Result;
-use Symfony\Component\Process\Process;
 
 class Behat implements ParserInterface
 {

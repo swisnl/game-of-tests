@@ -103,7 +103,7 @@ class Settings
     }
 
     /**
-     * @param mixed $skipPaths
+     * @param string $skipPath
      */
     public static function addSkipPath($skipPath)
     {

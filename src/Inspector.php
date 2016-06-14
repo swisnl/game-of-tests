@@ -32,7 +32,7 @@ class Inspector
     /**
      * Inspector constructor.
      * @param $repository Repository
-     * @return [string, Result[]]
+     * @return array
      *
      * @throws \Gitonomy\Git\Exception\InvalidArgumentException
      * @throws \Gitonomy\Git\Exception\RuntimeException

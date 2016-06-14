@@ -8,14 +8,11 @@
 
 namespace Swis\GoT\Parsers;
 
-use Gitonomy\Git\Blame\Line;
-use Gitonomy\Git\Commit;
-use Gitonomy\Git\Repository;
+
+
 use Swis\GoT\Helpers\Finder;
-use Swis\GoT\Parsers\Codeception\Cept;
-use Swis\GoT\Parsers\Codeception\Cest;
+
 use Swis\GoT\Result;
-use Symfony\Component\Process\Process;
 
 abstract class BaseParser implements ParserInterface
 {

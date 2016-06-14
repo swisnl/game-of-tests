@@ -8,9 +8,16 @@
 class InspectorTest extends PHPUnit_Framework_TestCase
 {
 
-    public function test()
+    public function testThisShouldBeCounted()
     {
-        $phpUnit = new \Swis\GoT\Parsers\PhpUnit();
-        
+        // This method will be counted
+    }
+
+    public function itWillCountThisMethod(){
+        // This method should be counted
+    }
+
+    public function _thisShouldNotBeCounted(){
+        // This method should not be counted
     }
 }

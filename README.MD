@@ -42,7 +42,7 @@ There are currently 3 parsers defined. PhpUnit, Codeception and Behat. A
 parser is a small class that defines how to find files that are tests, 
 and how to count tests for that type.
 
-A parser return an array with ``Swis\GoT\Result`` objects that contain
+A parser return an array with ``\Swis\GoT\Result`` objects that contain
 the information on the test.
 
 ## Example command

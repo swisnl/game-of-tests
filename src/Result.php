@@ -88,7 +88,20 @@ class Result
 
     public function __toString()
     {
-        return json_encode((array)$this);
+        return json_encode($this->toArray());
+    }
+
+    public function toArray()
+    {
+        return [
+            'filename' => $this->filename,
+            'line' => $this->line,
+            'author' => $this->author,
+            'email' => $this->email,
+            'date' => $this->date,
+            'commitHash' => $this->commitHash,
+            'parser' => $this->parser,
+        ];
     }
 
     /**

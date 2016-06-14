@@ -41,7 +41,7 @@ class Inspect extends Command
         array_walk(
             $inspectedRepository['results'],
             function (&$row) {
-                $row = (array)$row;
+                $row = $row->toArray();
             }
         );
 

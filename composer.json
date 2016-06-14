@@ -1,0 +1,23 @@
+{
+    "name": "swisnl/game-of-tests",
+    "description": "Classes to parse git repositories in search for tests, gives a list of tests with their owner to create a ranking of tests written.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Björn Brala",
+            "email": "bjorn@swis.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "gitonomy/gitlib": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Swis\\GoT\\" : "src/"
+        }
+    }
+}

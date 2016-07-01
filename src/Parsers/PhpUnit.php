@@ -50,7 +50,7 @@ class PhpUnit extends BaseParser
 
     protected function findFiles($repository)
     {
-        return $this->finder->grep($repository, 'Test.php$');
+        return $this->finder->grep($repository, '(Test|Tests).php$');
     }
 
     protected function isTestLine($line)

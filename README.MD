@@ -1,6 +1,6 @@
 # Game of Tests
 
-[![Build Status](https://travis-ci.org/swisnl/game-of-tests.svg?branch=master)](https://travis-ci.org/swisnl/game-of-tests)
+[![Packagist](https://img.shields.io/packagist/v/swisnl/game-of-tests.svg?maxAge=2592000)](https://packagist.org/packages/swisnl/game-of-tests) [![Build Status](https://travis-ci.org/swisnl/game-of-tests.svg?branch=master)](https://travis-ci.org/swisnl/game-of-tests) 
 
 This package serves as a way to search through git repositories and find PHP tests. I was inspired by the the [Spotify testing game](https://github.com/spotify/testing-game) I ran in to.
 

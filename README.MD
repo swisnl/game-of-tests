@@ -4,7 +4,7 @@
 
 This package serves as a way to search through git repositories and find PHP tests. I was inspired by the the [Spotify testing game](https://github.com/spotify/testing-game) I ran in to.
 
-The reason i wanted to my own implementatino for PHP was to help gamify testing in the company and encourage testing in general in the teams.
+The reason i wanted to my own implementation for PHP was to help gamify testing in the company and encourage testing in general in the teams.
 
 ## How to use
 

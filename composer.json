@@ -1,7 +1,9 @@
 {
     "name": "swisnl/game-of-tests",
     "description": "Classes to parse git repositories in search for tests, gives a list of tests with their owner to create a ranking of tests written.",
+    "keywords": ["game-of-tests"],
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Björn Brala",

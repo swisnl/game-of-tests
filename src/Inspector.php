@@ -93,7 +93,7 @@ class Inspector
         $reposStoragePath = $this->getPathToForRepositoryUrl($gitUrl);
         if (is_dir($reposStoragePath)) {
             $repository = $this->getRepositoryByPath($reposStoragePath);
-            $repository->run('fetch', ['--all']);
+            $repository->run('fetch', ['origin', '+refs/heads/*:refs/heads/*', '--prune']);
             return $repository;
         } else {
             $repository = Admin::cloneTo($reposStoragePath, $gitUrl);

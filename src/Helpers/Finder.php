@@ -25,8 +25,8 @@ class Finder
      * @return array
      */
     public function grepTimed($repository, $grepArgument, $since = '1 day ago'){
-        // git whatchanged --since '24 day ago' --oneline --pretty=format: --name-only | grep Test.php
-        $command = 'git whatchanged --since \'' . $since . '\' --oneline --pretty=format: --name-only | grep ' . ProcessUtils::escapeArgument($grepArgument);
+        // git log --since '24 day ago' --oneline --pretty=format: --name-only | grep Test.php
+        $command = 'git log --since \'' . $since . '\' --oneline --pretty=format: --name-only | grep ' . ProcessUtils::escapeArgument($grepArgument);
         return $this->getCommandResult($repository, $command);
     }
 

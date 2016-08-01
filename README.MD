@@ -13,7 +13,8 @@ The reason i wanted to my own implementation for PHP was to help gamify testing 
 You can inspect a remote repository as follows. This will create a local repository in the path specifiek in ``\Swis\GoT\Settings`` and use that to find the tests and test owners.
 
 ```php
-$inspector = new \Swis\GoT\Inspector();
+$settings = \Swis\GoT\Settings\SettingsFactory::create();
+$inspector = new \Swis\GoT\Inspector($settings);
 $repository = $inspector->getRepositoryByUrl('git@github.com:swisnl/game-of-tests.git');
 $results = $inspector->inspect($repository);
 ```
@@ -23,14 +24,21 @@ $results = $inspector->inspect($repository);
 If you have a local repository, you can also use that directly, for example if you have a set of base repositories as backups, that it fine.
 
 ```php
-$inspector = new \Swis\GoT\Inspector();
+$settings = \Swis\GoT\Settings\SettingsFactory::create();
+$inspector = new \Swis\GoT\Inspector($settings);
 $repository = $inspector->getRepositoryByPath('/path/to/repos');
 $results = $inspector->inspect($repository);
 ```
 
 ### Settings
 
-You can use the ``\Swis\GoT\Settings`` class to set some settings for the package. It lists the available parsers, some paths that are skipped by default and the path where the remote repositories are stored localy.
+You can use the ``\Swis\GoT\Settings`` class set some settings for the package. It lists the available parsers, some paths that are skipped by default and the path where the remote repositories are stored localy. Just pass the settings to the incspector. If you want to get a bare Settings object from the factory, pass false to the create function.
+
+```php
+// Create a bare settings object.
+$settings = \Swis\GoT\Settings\SettingsFactory::create(false);
+```
+
   
 ## Parsers
   

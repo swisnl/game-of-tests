@@ -4,12 +4,25 @@ namespace Swis\GoT\Result;
 use Swis\GoT\Result;
 use Swis\GoT\Settings;
 
-class Validation
+class Validation implements ValidationInterface
 {
+    /**
+     * @var \Swis\GoT\Settings
+     */
+    protected $settings;
 
-    public static function isValidFile($file)
+    /**
+     * Validation constructor.
+     * @param \Swis\GoT\Settings $settings
+     */
+    public function __construct(Settings $settings)
     {
-        foreach (Settings::getSkipPaths() as $path) {
+        $this->settings = $settings;
+    }
+
+    public function isValidFile($file)
+    {
+        foreach ($this->settings->getSkipPaths() as $path) {
             if (strpos($file, $path) === 0) {
                 return false;
             }

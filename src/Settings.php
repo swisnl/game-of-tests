@@ -12,60 +12,59 @@ class Settings
     /**
      * @var string|ParserInterface[] Classes implementing ParserInterface
      */
-    protected static $availableParsers = [
-        Behat::class,
-        Codeception::class,
-        PhpUnit::class,
-    ];
+    protected $availableParsers;
 
     /**
      * @var string
      */
-    protected static $repositoryStoragePath;
+    protected $repositoryStoragePath;
 
-    protected static $skipPaths;
+    /**
+     * @var array
+     */
+    protected $skipPaths;
 
     /**
      * @return string
      */
-    public static function getRepositoryStoragePath()
+    public function getRepositoryStoragePath()
     {
-        return null !== static::$repositoryStoragePath ? static::$repositoryStoragePath : rtrim(
-                sys_get_temp_dir(),
-                '/\\'
-            ) . DIRECTORY_SEPARATOR;
+        return $this->repositoryStoragePath;
     }
 
     /**
      * @param string $repositoryStoragePath
      */
-    public static function setRepositoryStoragePath($repositoryStoragePath)
+    public function setRepositoryStoragePath($repositoryStoragePath)
     {
-        self::$repositoryStoragePath = $repositoryStoragePath;
+        $this->repositoryStoragePath = $repositoryStoragePath;
     }
 
-    public static function getAvailableParsers()
+    /**
+     * @return string|\Swis\GoT\Parsers\ParserInterface[]
+     */
+    public function getAvailableParsers()
     {
-        return self::$availableParsers;
+        return $this->availableParsers;
     }
 
     /**
      * @param array $availableParsers
      */
-    public static function setAvailableParsers($availableParsers)
+    public function setAvailableParsers($availableParsers)
     {
-        self::$availableParsers = $availableParsers;
+        $this->availableParsers = $availableParsers;
     }
 
     /**
      * @param string $parserClass Classname
      * @throws \Swis\GoT\Exception\InterfaceNotImplementedException
      */
-    public static function addAvailableParser($parserClass)
+    public function addAvailableParser($parserClass)
     {
-        if (!in_array($parserClass, self::$availableParsers)) {
+        if (!in_array($parserClass, $this->availableParsers)) {
             if (in_array('ParserInterface', class_implements($parserClass, true))) {
-                self::$availableParsers[] = $parserClass;
+                $this->availableParsers[] = $parserClass;
             } else {
                 throw new Exception\InterfaceNotImplementedException();
             }
@@ -75,34 +74,26 @@ class Settings
     /**
      * @return mixed
      */
-    public static function getSkipPaths()
+    public function getSkipPaths()
     {
-        return null !== static::$skipPaths ? static::$skipPaths : array(
-            'vendor/',
-            'libs/',
-            'webbeheer/',
-            'tests/_support/',
-            'workbench/',
-            'tests/ExampleTest.php',
-            '_cronjobs/',
-        );
+        return $this->skipPaths;
     }
 
     /**
      * @param mixed $skipPaths
      */
-    public static function setSkipPaths($skipPaths)
+    public function setSkipPaths($skipPaths)
     {
-        self::$skipPaths = $skipPaths;
+        $this->skipPaths = $skipPaths;
     }
 
     /**
      * @param string $skipPath
      */
-    public static function addSkipPath($skipPath)
+    public function addSkipPath($skipPath)
     {
-        if (!in_array($skipPath, static::getSkipPaths())) {
-            static::$skipPaths[] = $skipPath;
+        if (!in_array($skipPath, $this->getSkipPaths())) {
+            $this->skipPaths[] = $skipPath;
         }
     }
 }

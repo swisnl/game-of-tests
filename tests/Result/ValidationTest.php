@@ -3,14 +3,14 @@ namespace Swis\GoT\Tests\Result;
 
 use PHPUnit_Framework_TestCase;
 use Swis\GoT\Result\Validation;
-use Swis\GoT\Settings\Factory;
+use Swis\GoT\Settings\SettingsFactory;
 
 class ValidationTest extends PHPUnit_Framework_TestCase
 {
 
     public function testDefaultsGiveFalse()
     {
-        $settings = Factory::create();
+        $settings = SettingsFactory::create();
         $validation = new Validation($settings);
         $paths = $settings->getSkipPaths();
 
@@ -22,7 +22,7 @@ class ValidationTest extends PHPUnit_Framework_TestCase
 
     public function testAddSkippedPathToSettings()
     {
-        $settings = Factory::create();
+        $settings = SettingsFactory::create();
         $settings->addSkipPath('test-path/');
         $validation = new Validation($settings);
 

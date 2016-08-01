@@ -3,14 +3,14 @@ namespace Swis\GoT\Tests;
 
 use Gitonomy\Git\Repository;
 use Swis\GoT\Inspector;
-use Swis\GoT\Settings\Factory;
+use Swis\GoT\Settings\SettingsFactory;
 
 class InspectorTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testInspectThisRespository()
     {
-        $settings = Factory::create();
+        $settings = SettingsFactory::create();
 
         $inspector = new Inspector($settings);
         $repository = $inspector->getRepositoryByPath('.');

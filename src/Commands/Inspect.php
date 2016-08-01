@@ -3,6 +3,7 @@ namespace Swis\GoT\Commands;
 
 use Illuminate\Console\Command;
 use Swis\GoT\Inspector;
+use Swis\GoT\Settings\SettingsFactory;
 
 class Inspect extends Command
 {
@@ -29,7 +30,9 @@ class Inspect extends Command
      */
     public function handle()
     {
-        $inspector = new Inspector();
+
+        $settings = SettingsFactory::create();
+        $inspector = new Inspector($settings);
 
         $repository = $inspector->getRepositoryByUrl($this->argument('repositoryUrl'));
 

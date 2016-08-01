@@ -10,7 +10,15 @@ use Symfony\Component\Process\Process;
 
 class Inspector
 {
+    /**
+     * @var \Swis\GoT\Result\Validation
+     */
     protected $resultValidation;
+
+    /**
+     * @var \Swis\GoT\Settings
+     */
+    protected $settings;
 
     public function __construct(Settings $settings)
     {

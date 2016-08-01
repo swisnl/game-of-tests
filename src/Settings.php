@@ -72,7 +72,7 @@ class Settings
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getSkipPaths()
     {
@@ -80,7 +80,7 @@ class Settings
     }
 
     /**
-     * @param mixed $skipPaths
+     * @param array $skipPaths
      */
     public function setSkipPaths($skipPaths)
     {

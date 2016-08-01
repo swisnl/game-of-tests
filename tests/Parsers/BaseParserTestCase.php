@@ -4,6 +4,7 @@ namespace Swis\GoT\Tests\Parsers;
 use PHPUnit_Framework_TestCase;
 use Swis\GoT\Parsers\ParserInterface;
 use Swis\GoT\Result;
+use Swis\GoT\Settings\Factory;
 
 class BaseParserTestCase extends PHPUnit_Framework_TestCase
 {
@@ -24,7 +25,10 @@ class BaseParserTestCase extends PHPUnit_Framework_TestCase
      */
     protected function runParserTest($parser, $expectedFiles, $expectedCount)
     {
-        $results = $parser->run($this->repository);
+        $settings = Factory::create();
+        $validation = new Result\Validation($settings);
+
+        $results = $parser->run($this->repository, $validation);
         $count = 0;
         foreach ($results as $result) {
             static::assertInstanceOf(Result::class, $result);

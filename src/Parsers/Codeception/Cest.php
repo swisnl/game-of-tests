@@ -17,17 +17,17 @@ class Cest implements ParserInterface
 
     /**
      * @param Repository $repository
-     * @return Result[]
-     * @throws \Gitonomy\Git\Exception\RuntimeException
+     * @param \Swis\GoT\Result\ValidationInterface $validation
+     * @return \Swis\GoT\Result[]
      */
-    public function run(Repository $repository)
+    public function run(Repository $repository, Result\ValidationInterface $validation)
     {
 
         $files = $this->findFiles($repository);
         $result = [];
 
         foreach ($files as $file) {
-            if (Result\Validation::isValidFile($file) === false) {
+            if ($validation->isValidFile($file) === false) {
                 continue;
             }
             $blame = $repository->getBlame($repository->getHead(), $file);

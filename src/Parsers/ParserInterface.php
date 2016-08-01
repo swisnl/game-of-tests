@@ -8,9 +8,9 @@ interface ParserInterface
 {
     /**
      * @param Repository $repository
-     * @return Result[]
-     * @throws \Gitonomy\Git\Exception\RuntimeException
+     * @param \Swis\GoT\Result\ValidationInterface $validation
+     * @return \Swis\GoT\Result[]
      */
-    public function run(Repository $repository);
+    public function run(Repository $repository, Result\ValidationInterface $validation);
 
 }

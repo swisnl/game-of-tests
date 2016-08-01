@@ -2,23 +2,32 @@
 namespace Swis\GoT\Tests\Result;
 
 use PHPUnit_Framework_TestCase;
+use Swis\GoT\Result\Validation;
+use Swis\GoT\Settings\Factory;
 
 class ValidationTest extends PHPUnit_Framework_TestCase
 {
 
     public function testDefaultsGiveFalse()
     {
-        $paths = \Swis\GoT\Settings::getSkipPaths();
+        $settings = Factory::create();
+        $validation = new Validation($settings);
+        $paths = $settings->getSkipPaths();
+
+
         foreach ($paths as $path) {
-            static::assertFalse(\Swis\GoT\Result\Validation::isValidFile($path . 'test.php'));
+            static::assertFalse($validation->isValidFile($path . 'test.php'));
         }
     }
 
     public function testAddSkippedPathToSettings()
     {
-        \Swis\GoT\Settings::addSkipPath('test-path/');
+        $settings = Factory::create();
+        $settings->addSkipPath('test-path/');
+        $validation = new Validation($settings);
 
-        static::assertFalse(\Swis\GoT\Result\Validation::isValidFile('test-path/lol'));
-        static::assertTrue(\Swis\GoT\Result\Validation::isValidFile('not-test-path/lol'));
+
+        static::assertFalse($validation->isValidFile('test-path/lol'));
+        static::assertTrue($validation->isValidFile('not-test-path/lol'));
     }
 }

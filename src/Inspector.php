@@ -5,10 +5,18 @@ use Gitonomy\Git\Admin;
 use Gitonomy\Git\Repository;
 use Swis\GoT\Exception\CannotFindRemoteException;
 use Swis\GoT\Parsers\ParserInterface;
+use Swis\GoT\Result\Validation;
 use Symfony\Component\Process\Process;
 
 class Inspector
 {
+    protected $resultValidation;
+
+    public function __construct(Settings $settings)
+    {
+        $this->settings = $settings;
+        $this->resultValidation = new Validation($settings);
+    }
 
     /**
      * @param $gitPath
@@ -41,7 +49,7 @@ class Inspector
      */
     public function inspectRepository($repository)
     {
-        $parsers = Settings::getAvailableParsers();
+        $parsers = $this->settings->getAvailableParsers();
 
         $parserResults = [];
         foreach ($parsers as $parserClass) {
@@ -49,7 +57,7 @@ class Inspector
              * @var $parser ParserInterface
              */
             $parser = new $parserClass();
-            $parserResults = array_merge($parserResults, $parser->run($repository));
+            $parserResults = array_merge($parserResults, $parser->run($repository, $this->getResultValidation()));
         }
 
         try {
@@ -107,6 +115,22 @@ class Inspector
      */
     protected function getPathToForRepositoryUrl($gitUrl)
     {
-        return Settings::getRepositoryStoragePath() . md5($gitUrl);
+        return $this->settings->getRepositoryStoragePath() . md5($gitUrl);
+    }
+
+    /**
+     * @return \Swis\GoT\Result\Validation
+     */
+    public function getResultValidation()
+    {
+        return $this->resultValidation;
+    }
+
+    /**
+     * @param \Swis\GoT\Result\Validation $resultValidation
+     */
+    public function setResultValidation($resultValidation)
+    {
+        $this->resultValidation = $resultValidation;
     }
 }

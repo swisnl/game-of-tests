@@ -17,13 +17,13 @@ class Codeception implements ParserInterface
      * @param Repository $repository
      * @return Result[]
      */
-    public function run(Repository $repository)
+    public function run(Repository $repository, Result\ValidationInterface $validation)
     {
         $results = [];
         foreach (static::$types as $type) {
             /** @var ParserInterface $parser */
             $parser = new $type();
-            $results += $parser->run($repository);
+            $results += $parser->run($repository, $validation);
         }
         return $results;
     }

@@ -26,11 +26,9 @@ class SettingsFactory
             $settings->setSkipPaths([
               'vendor/',
               'libs/',
-              'webbeheer/',
               'tests/_support/',
               'workbench/',
               'tests/ExampleTest.php',
-              '_cronjobs/',
             ]);
 
             $settings->setRepositoryStoragePath(rtrim(

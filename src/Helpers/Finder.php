@@ -1,6 +1,7 @@
 <?php
 namespace Swis\GoT\Helpers;
 
+use Gitonomy\Git\Repository;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
 
@@ -8,8 +9,8 @@ class Finder
 {
 
     /**
-     * @param $repository
-     * @param $grepArgument
+     * @param Repository $repository
+     * @param string $grepArgument
      * @return array
      */
     public function grep($repository, $grepArgument)
@@ -19,14 +20,14 @@ class Finder
     }
 
     /**
-     * @param $repository
-     * @param $grepArgument
+     * @param Repository $repository
+     * @param string $grepArgument
      * @param string $since 
      * @return array
      */
     public function grepTimed($repository, $grepArgument, $since = '1 day ago'){
         // git log --since '24 day ago' --oneline --pretty=format: --name-only | grep Test.php
-        $command = 'git log --since \'' . $since . '\' --oneline --pretty=format: --name-only | grep ' . ProcessUtils::escapeArgument($grepArgument);
+        $command = 'git log --since \'' . ProcessUtils::escapeArgument($since) . '\' --oneline --pretty=format: --name-only | grep ' . ProcessUtils::escapeArgument($grepArgument);
         return $this->getCommandResult($repository, $command);
     }
 

@@ -51,3 +51,4 @@ A parser return an array with ``\Swis\GoT\Result`` objects that contain the info
 The repository includes a small example command for Laravel, should you want to want to use it there.
 
 Want an implementation as a Laravel service provider? Check out [swisnl/game-of-tests-laravel](https://github.com/swisnl/game-of-tests-laravel).
+

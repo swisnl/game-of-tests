@@ -42,7 +42,8 @@ $settings = \Swis\GoT\Settings\SettingsFactory::create(false);
   
 ## Parsers
   
-There are currently 3 parsers defined. PhpUnit, Codeception and Behat. A parser is a small class that defines how to find files that are tests, and how to count tests for that type.
+There are currently 6 parsers defined. PhpUnit, Codeception and Behat for PHP and Ava/Tape, Jasmine/Jest/Mocha and QUnit for JavaScript. A parser is a small class that defines how to find files that are tests, and how to count tests for that type.
+N.B. Some JavaScript test frameworks are combined in one parser because they use the same syntax.
 
 A parser return an array with ``\Swis\GoT\Result`` objects that contain the information on the test.
 

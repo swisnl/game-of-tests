@@ -3,6 +3,9 @@ namespace Swis\GoT\Settings;
 
 use Swis\GoT\Parsers\Behat;
 use Swis\GoT\Parsers\Codeception;
+use Swis\GoT\Parsers\JavaScript\AvaTape;
+use Swis\GoT\Parsers\JavaScript\JasmineJestMocha;
+use Swis\GoT\Parsers\JavaScript\QUnit;
 use Swis\GoT\Parsers\PhpUnit;
 use Swis\GoT\Settings;
 
@@ -21,9 +24,14 @@ class SettingsFactory
               Behat::class,
               Codeception::class,
               PhpUnit::class,
+              AvaTape::class,
+              JasmineJestMocha::class,
+              QUnit::class,
             ]);
 
             $settings->setSkipPaths([
+              'bower_components/',
+              'node_modules/',
               'vendor/',
               'libs/',
               'tests/_support/',

@@ -22,6 +22,7 @@ class BaseParserTestCase extends PHPUnit_Framework_TestCase
      * @param ParserInterface $parser
      * @param array $expectedFiles What files do we expect as result
      * @param int $expectedCount How many tests should be counted
+     * @return Result[]
      */
     protected function runParserTest($parser, $expectedFiles, $expectedCount)
     {
@@ -33,6 +34,8 @@ class BaseParserTestCase extends PHPUnit_Framework_TestCase
         foreach ($results as $result) {
             static::assertInstanceOf(Result::class, $result);
 
+            static::assertEquals(get_class($parser), $result->getParser());
+
             if (in_array($result->getFilename(), $expectedFiles)) {
                 $count++;
             }
@@ -42,5 +45,7 @@ class BaseParserTestCase extends PHPUnit_Framework_TestCase
             $count,
             'Check if file list has ' . $expectedCount . ' results.'
         );
+
+        return $results;
     }
 }

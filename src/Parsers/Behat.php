@@ -44,7 +44,7 @@ class Behat implements ParserInterface
                         $line->getCommit()->getAuthorName(),
                         $line->getCommit()->getAuthorEmail(),
                         $line->getCommit()->getCommitterDate()->getTimestamp(),
-                        self::class
+                        static::class
                     );
                 }
             }

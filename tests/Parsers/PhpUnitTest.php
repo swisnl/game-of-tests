@@ -15,7 +15,7 @@ class PhpUnitTest extends BaseParserTestCase
         $expectedFiles = [
             'tests/_files/phpunit/PhpUnitResultTest.php'
         ];
-        $expectedCount = 4;
+        $expectedCount = 5;
         $parser = new PhpUnit();
 
         $this->runParserTest($parser, $expectedFiles, $expectedCount);

@@ -7,6 +7,7 @@ use Swis\GoT\Result;
 
 class PhpUnit extends BaseParser
 {
+    private $lastAtTestLine;
 
     /**
      * @param Repository $repository
@@ -55,7 +56,37 @@ class PhpUnit extends BaseParser
 
     protected function isTestLine($line)
     {
-        return preg_match('/(public function (test|it)\w+)/', $line);
-    }
+        // public function test...
+        if (preg_match('/(public function test\w+)/', $line)) {
+            $this->lastAtTestLine = null;
 
+            return true;
+        }
+
+        // @test
+        if (preg_match('/(\s@test)/', $line)) {
+            $this->lastAtTestLine = $line;
+
+            return false;
+        }
+
+        // @test found earlier
+        if ($this->lastAtTestLine !== null) {
+            // public function ...
+            if (preg_match('/(public function \w+)/', $line)) {
+                $this->lastAtTestLine = null;
+
+                return true;
+            }
+
+            // other access keyword
+            if (preg_match('/((public|protected|private) \w+)/', $line)) {
+                $this->lastAtTestLine = null;
+
+                return false;
+            }
+        }
+
+        return false;
+    }
 }

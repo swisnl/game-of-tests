@@ -6,7 +6,16 @@ class PhpUnitResultTest extends PHPUnit_Framework_TestCase
         // This method will be counted
     }
 
+    /** @test */
     public function itWillCountThisMethod()
+    {
+        // This method should be counted
+    }
+
+    /**
+     * @test
+     */
+    public function thisMethodWillAlsoBeCounted()
     {
         // This method should be counted
     }
@@ -28,10 +37,24 @@ class PhpUnitResultTest extends PHPUnit_Framework_TestCase
 
     protected function testProtectedShouldNotBeCounted()
     {
+        // This method should not be counted
     }
 
     private function testPrivateShouldNotBeCounted()
     {
+        // This method should not be counted
+    }
+
+    /** @test */
+    protected function itShouldNotCountProtected()
+    {
+        // This method should not be counted
+    }
+
+    /** @test */
+    private function itShouldNotCountPrivate()
+    {
+        // This method should not be counted
     }
 
     /**

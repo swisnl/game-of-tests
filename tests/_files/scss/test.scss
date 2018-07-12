@@ -1,0 +1,27 @@
+@import "true";
+
+@include test-module('things') {
+    @include test('Something') {
+        $test: 16;
+        $expect: 16;
+        @include assert-equal($test, $expect);
+    }
+
+    @include testShouldNotCount('Something') {
+        $test: 0.25rem;
+        $expect: 0.25rem;
+        @include assert-equal($test, $expect);
+    }
+
+    @include it('Something') {
+        $test: 0.3125rem;
+        $expect: 0.3125rem;
+        @include assert-equal($test, $expect);
+    }
+
+    @include itShouldNotCount('Something') {
+        $test: 0.1875rem;
+        $expect: 0.1875rem;
+        @include assert-equal($test, $expect);
+    }
+}

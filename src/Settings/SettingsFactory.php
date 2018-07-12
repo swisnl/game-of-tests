@@ -7,6 +7,7 @@ use Swis\GoT\Parsers\JavaScript\AvaTape;
 use Swis\GoT\Parsers\JavaScript\JasmineJestMocha;
 use Swis\GoT\Parsers\JavaScript\QUnit;
 use Swis\GoT\Parsers\PhpUnit;
+use Swis\GoT\Parsers\SCSS;
 use Swis\GoT\Settings;
 
 class SettingsFactory
@@ -27,6 +28,7 @@ class SettingsFactory
               AvaTape::class,
               JasmineJestMocha::class,
               QUnit::class,
+              SCSS::class,
             ]);
 
             $settings->setSkipPaths([

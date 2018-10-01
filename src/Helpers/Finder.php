@@ -15,32 +15,32 @@ class Finder
      */
     public function grep($repository, $grepArgument)
     {
-        $command = 'git ls-tree -r --name-only HEAD | grep ' . ProcessUtils::escapeArgument($grepArgument);
-        return $this->getCommandResult($repository, $command);
+        $command = 'git ls-tree -r --name-only HEAD | grep $GREPARG';
+        return $this->getCommandResult($repository, $command, ['GREPARG' => $grepArgument]);
     }
 
     /**
      * @param Repository $repository
      * @param string $grepArgument
-     * @param string $since 
+     * @param string $since
      * @return array
      */
     public function grepTimed($repository, $grepArgument, $since = '1 day ago'){
-        // git log --since '24 day ago' --oneline --pretty=format: --name-only | grep Test.php
-        $command = 'git log --since \'' . ProcessUtils::escapeArgument($since) . '\' --oneline --pretty=format: --name-only | grep ' . ProcessUtils::escapeArgument($grepArgument);
-        return $this->getCommandResult($repository, $command);
+        $command = 'git log --since \'$SINCE\' --oneline --pretty=format: --name-only | grep $GREPARG';
+        return $this->getCommandResult($repository, $command, ['SINCE' => $since, 'GREPARG' => $grepArgument]);
     }
 
     /**
      * @param $repository
      * @param $command
+     * @param array $arguments
      * @return array
      */
-    protected function getCommandResult($repository, $command)
+    protected function getCommandResult($repository, $command, array $arguments = [])
     {
         $process = new Process($command);
         $process->setWorkingDirectory($repository->getPath());
-        $process->run();
+        $process->run(null, $arguments);
         $output = trim($process->getOutput());
         if ($output === '') {
             return [];
